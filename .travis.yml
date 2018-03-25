@@ -7,7 +7,8 @@ install:
     - rm -rf public  || exit 0
     
 script:
-    - hugo
+    - ./hugo
+    - ls
 
 git:
     submodules: true
