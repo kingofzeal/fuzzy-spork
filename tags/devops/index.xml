@@ -2,40 +2,40 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Devops on The Fuzzy Spork</title>
-    <link>/tags/devops/</link>
+    <link>https://kingofzeal.github.io/fuzzy-spork/tags/devops/</link>
     <description>Recent content in Devops on The Fuzzy Spork</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 23 Dec 2017 08:00:00 -0600</lastBuildDate>
     
-	<atom:link href="/tags/devops/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://kingofzeal.github.io/fuzzy-spork/tags/devops/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Searching for SSL Certificates based on SAN entries</title>
-      <link>/2017/12/23/searching-for-ssl-certificates-based-on-san-entries/</link>
+      <link>https://kingofzeal.github.io/fuzzy-spork/2017/12/23/searching-for-ssl-certificates-based-on-san-entries/</link>
       <pubDate>Sat, 23 Dec 2017 08:00:00 -0600</pubDate>
       
-      <guid>/2017/12/23/searching-for-ssl-certificates-based-on-san-entries/</guid>
+      <guid>https://kingofzeal.github.io/fuzzy-spork/2017/12/23/searching-for-ssl-certificates-based-on-san-entries/</guid>
       <description>Lately, I&amp;rsquo;ve been playing with Lets Encrypt as a means to encrypt public(ish) web-based services I run on my local server. It&amp;rsquo;s actually remarkable what this non-profit group has accomplished when it comes to SSL - they offer free, automated SSL certificates to anybody who wants them. They even support SAN certificates (those that cover multiple, explicitly-named DNS entries), and starting in January they will offer wildcard certificates. I will tell anybody who is willing to listen, and who is looking to avoid paying paying $50+ for an SSL certificate, about them and encourage everyone to look into their service.</description>
     </item>
     
     <item>
       <title>Using Octopus Deploy to deploy multiple projects at once</title>
-      <link>/2017/12/14/using-octopus-deploy-to-deploy-multiple-projects-at-once/</link>
+      <link>https://kingofzeal.github.io/fuzzy-spork/2017/12/14/using-octopus-deploy-to-deploy-multiple-projects-at-once/</link>
       <pubDate>Thu, 14 Dec 2017 08:00:00 +0000</pubDate>
       
-      <guid>/2017/12/14/using-octopus-deploy-to-deploy-multiple-projects-at-once/</guid>
+      <guid>https://kingofzeal.github.io/fuzzy-spork/2017/12/14/using-octopus-deploy-to-deploy-multiple-projects-at-once/</guid>
       <description>We use Octopus Deploy at my workplace to handle all of our releases. The tool is one of the best I&amp;rsquo;ve had the pleasure of dealing with, and the more I interact with it, the more I realize just how powerful, yet flexible, it is. I will gladly recommend it to anyone who is looking for a way of releasing any kind of software.
 However, there is always room for improvement.</description>
     </item>
     
     <item>
       <title>On deployments and distribution</title>
-      <link>/2016/10/11/on-deployments-and-distribution/</link>
+      <link>https://kingofzeal.github.io/fuzzy-spork/2016/10/11/on-deployments-and-distribution/</link>
       <pubDate>Tue, 11 Oct 2016 07:00:00 +0000</pubDate>
       
-      <guid>/2016/10/11/on-deployments-and-distribution/</guid>
+      <guid>https://kingofzeal.github.io/fuzzy-spork/2016/10/11/on-deployments-and-distribution/</guid>
       <description>Ever since I started programming, I&amp;rsquo;ve been fascinated with what you can do with a codebase - not just the act of programming, but building and deploying it as well. For a programming company, the less time programmers have to work on building or deploying their code, the more productive they can be. The automation of these things can have a huge benefit.I&amp;rsquo;m sure many who may be reading this already have something in place to automatically build code, either on check-in, at a specific time, or both.</description>
     </item>
     
