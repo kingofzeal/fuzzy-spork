@@ -1,0 +1,36 @@
+baseURL: ""
+languageCode: "en-us"
+title: "The Fuzzy Spork"
+theme: "hyde-hyde"
+defaultContentLanguage: "en-us"
+description: "something"
+pygmentsCodeFences: true
+
+params:
+    description: "Strange but entertaining food for thought"
+    dateformat: "Monday, January 2, 2006"
+    author: "James McCollum"
+    social:
+        twitter: "kingofzeal"
+        github: "kingofzeal"
+        stackoverflow: "1088711"
+
+permalinks:
+    posts: /:year/:month/:day/:title/
+  
+taxonomies:
+    category: "categories"
+    tag: "tags"
+    
+menu:
+    main:
+        - name: "Tags"
+          title: "Tags"
+          identifier: "Tags"
+          url: "/tags/"
+          weight: 10
+        - name: "Archive"
+          title: "Archive"
+          identifier: "Archive"
+          url: "/posts/"
+          weight: 20
