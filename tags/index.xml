@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on The Fuzzy Spork</title>
+    <link>/tags/</link>
+    <description>Recent content in Tags on The Fuzzy Spork</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 11 Oct 2016 07:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Build</title>
+      <link>/tags/build/</link>
+      <pubDate>Tue, 11 Oct 2016 07:00:00 +0000</pubDate>
+      
+      <guid>/tags/build/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Deployment</title>
+      <link>/tags/deployment/</link>
+      <pubDate>Thu, 14 Dec 2017 08:00:00 +0000</pubDate>
+      
+      <guid>/tags/deployment/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Devops</title>
+      <link>/tags/devops/</link>
+      <pubDate>Sat, 23 Dec 2017 08:00:00 -0600</pubDate>
+      
+      <guid>/tags/devops/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Letsencrypt</title>
+      <link>/tags/letsencrypt/</link>
+      <pubDate>Sat, 23 Dec 2017 08:00:00 -0600</pubDate>
+      
+      <guid>/tags/letsencrypt/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Octopus Deploy</title>
+      <link>/tags/octopus-deploy/</link>
+      <pubDate>Sat, 23 Dec 2017 08:00:00 -0600</pubDate>
+      
+      <guid>/tags/octopus-deploy/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Ssl Certificates</title>
+      <link>/tags/ssl-certificates/</link>
+      <pubDate>Sat, 23 Dec 2017 08:00:00 -0600</pubDate>
+      
+      <guid>/tags/ssl-certificates/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

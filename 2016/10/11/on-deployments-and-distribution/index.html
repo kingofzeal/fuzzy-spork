@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en-us" class="wf-firasans-n4-active wf-active">
+	<head>
+    <link href="http://gmpg.org/xfn/11" rel="profile">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Enable responsiveness on mobile devices --> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    
+    	
+    <meta name="generator" content="Hugo 0.37.1" />
+    
+    <title>On deployments and distribution &middot; The Fuzzy Spork</title>
+    <meta content="On deployments and distribution - The Fuzzy Spork" property="og:title">
+    <meta content=" - " property="og:description">    
+    <!-- CSS --> 
+    <link rel="stylesheet" href="css/print.css" media="print">
+    <link rel="stylesheet" href="css/poole.css">
+    <link rel="stylesheet" href="css/hyde.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira+Sans:300,300i,400,400i,500">
+    
+    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+    
+    <!-- Customised CSS -->
+    <link rel="stylesheet" href="css/custom.css">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- Icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+    <link rel="shortcut icon" href="/favicon.png">
+    
+
+	</head>
+    <body>
+        <div class="sidebar">
+	<div class="container text-center sidebar-sticky">
+		<div class="sidebar-about text-center">
+			<a href=""><h1 class="brand">The Fuzzy Spork</h1></a>
+			
+			<p class="lead">
+				 Strange but entertaining food for thought 
+			</p>
+		</div>
+		
+<div>
+	<ul class="sidebar-nav">
+		
+		
+				<li>
+					<a href="/tags/"> <span>Tags</span></a>
+				</li>
+				<li>
+					<a href="/posts/"> <span>Archive</span></a>
+				</li>
+		</li>
+	</ul>
+</div>
+
+        <p>
+		<section class="row text-center">
+	
+	<a href="https://twitter.com/kingofzeal"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	&nbsp;<a href="https://github.com/kingofzeal"><i class="fab fa-github fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	
+	
+	&nbsp;<a href="https://stackoverflow.com/users/1088711"><i class="fab fa-stack-overflow fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	
+</section>
+
+        </p>
+		<p class="copyright">&copy; 2018 James McCollum.
+        </p>
+	</div>
+	<div>
+	</div>
+</div>
+
+        <div class="content container">
+            <div class="post">
+  <h1>On deployments and distribution</h1>
+  
+  <div class="col-sm-12 col-md-12">
+    <span class="text-left post-date meta">
+            
+       <i class="fa fa-calendar" aria-hidden="true"></i> Tuesday, October 11, 2016 
+      
+      
+      
+      
+        
+        
+            <br/>
+             <i class="fa fa-tags" aria-hidden="true"></i>
+            
+            <a class="meta" href="/tags/build">build</a> 
+        
+            <a class="meta" href="/tags/deployment">deployment</a> 
+        
+            <a class="meta" href="/tags/devops">devops</a>
+        
+      
+      
+      </span>  
+  </div>    
+  
+  
+
+<p>Ever since I started programming, I&rsquo;ve been fascinated with what you can do with a codebase - not just the act of programming, but building and deploying it as well. For a programming company, the less time programmers have to work on building or deploying their code, the more productive they can be. The automation of these things can have a huge benefit.<!-- more --></p>
+
+<p>I&rsquo;m sure many who may be reading this already have something in place to automatically build code, either on check-in, at a specific time, or both. Some may even have a system in place to automatically deploy code internally or to customers. But what is the real benefit from these things?</p>
+
+<p>In many ways, having automated build and deployment solutions are as invaluable as have a version control solution. It doesn&rsquo;t ultimately matter what you use to accomplish the task, but having something puts you in a much better place than not having anything. I, and I&rsquo;m sure many others, have gotten so used to having such systems that I run my own to take care of things. Even this simple blog is version controlled and automatically deployed. At this point, it&rsquo;s more habit than anything. My personal projects are all run through a build process on commit (I haven&rsquo;t gotten to a deployment, for various reasons, but I&rsquo;m working on it). If there is a perceived benefit from doing this on projects/programs that have little to no impact, how much more benefit is there for a company whose existance relies on getting code built and out the door?</p>
+
+<h2 id="automated-build-solution">Automated Build Solution</h2>
+
+<p>This is the easy one. If you can&rsquo;t build your code, then you have nothing to ship. But why should you have an automated build solution? Simply put, reliability. There&rsquo;s an interesting mentality that arises from using source control: Code that isn&rsquo;t checked in doesn&rsquo;t exist. Having a build environment separate from your development environment ensures that the only code that can be built is the code that is checked in. Sure, you can (and will) miss check-ins that cause a build to fail, but that&rsquo;s the point. Even more dangerously, without a separate machine, it&rsquo;s possible (and even inevitable) that you will build a feature that wasn&rsquo;t meant to be released.</p>
+
+<p>With a dedicated machine to build code, you can avoid all these issues. Additionally, with the right set of triggers and configuration, you won&rsquo;t even need to give up your own time. Simply download the last build&rsquo;s artifacts and you&rsquo;re ready to deploy. This is even more helpful if your development cycle and deployment schedule don&rsquo;t exactly line up - simply pull the last build from the last day of your development cycle.</p>
+
+<p>Building on a dedicated machine also helps with stability. There are plenty of stories of projects that will, for one reason or another, build on one machine but not another. By eliminating the variance between machines (by using the <em>same</em> machine), you can accurately say 99% of the time that the problem is with the code, not the environment.</p>
+
+<p>It&rsquo;s also beneficial to have a build solution in place for a historical purpose: most solutions provide an easy way to track published artifacts over time. If a version of your code is released that has a bug, it&rsquo;s easy to rollback to the last known working version, since you generally still have those artifacts. Without them, the only thing that can be done is to attempt to fix the bug, often while facing immense pressure from executives and customers.</p>
+
+<h2 id="automated-deployment-solution">Automated Deployment Solution</h2>
+
+<p>There&rsquo;s nothing that says the build solution and the deployment solution can&rsquo;t be the same thing. I&rsquo;ve worked with a build environment that has a large number of deployment steps, and a single build step. There&rsquo;s nothing wrong with such a system (and in some cases it can make sense), but know that it might not always be the best option.</p>
+
+<p>Oddly enough, build solutions are generally found in most programming businesses but deployment solutions aren&rsquo;t as common. Many times, the software being released doesn&rsquo;t have a well-defined customer base, or a customer base that is so broad that such a system is deemed impractical. However, even in those situations a deployment solution could be a reasonable time saver.</p>
+
+<p>If a product is being deployed solely for internal use, a deployment of a product takes an abnormally long time, or if there are many complicated steps to deploy a product, you will almost always benefit from an automated deployment system. Not only does it help to organize where things should be deployed to, but it can do everything that is needed accurately and reliably. This isn&rsquo;t to say that there won&rsquo;t be problems - deployments need testing, just like everything else. However, you can be assured that every deployment, given the same settings, will always do the same thing. Once it has been set up, you will generally not need to look at it again.</p>
+
+<h2 id="other-thoughts">Other Thoughts</h2>
+
+<p>Personally, I have always used <a href="https://www.jetbrains.com/teamcity/">TeamCity</a> for my build system, even for personal projects. It has an easy-to-use interface, allows for running arbitrary scripts (helpful if you want to make it a deployment system), gets updates on a regular basis, and has a lot of plugins and features to support any type of project. The best part: it&rsquo;s free for up to 20 configurations and 3 build agents (runners).</p>
+
+<p>For a deployment solution, I&rsquo;ve used TeamCity to handle that as well, and it does a reasonable job at it. It requires more configuration than probably should be expected, but it still performs as expected. However, for more complex deployments, I&rsquo;ve grown fond of <a href="https://octopus.com/">Octopus Deploy</a>. It isolates deployment processes from deployment targets in a way that makes it very easy to expand either. The focus is on the Microsoft stack (with nice native support for IIS and Windows Services), but can be used for almost anything. It is also available for free (for up to 20 of any combination of projects, target machines and users), but the time it takes to set it up and configure it doesn&rsquo;t lend itself well to personal projects, as they are generally only deployed to a single location.</p>
+
+<p>Finally, don&rsquo;t discount other systems, such as <a href="https://travis-ci.org/">Travis CI</a>, which excel at projects that are intrepreted, like Javascript and PHP (like this blog, which is generated with a Node package <code>Hexo</code>). Since these aren&rsquo;t compiled in the traditional sense, such systems can be used to run unit tests and deploy on success. Travis in particular has great integration with Github, where you can see Pass/Fail statuses and even enforce checks on pull requests.</p>
+
+<p>I&rsquo;m sure many who are reading this are already using most, if not all, these things, but for those who still are not: Take the time now and look into setting something up. You&rsquo;ll thank yourself for it tomorrow.</p>
+
+</div>
+            <div class="footer">
+                
+
+
+
+            </div>
+        </div>
+        
+                
+    </body>
+</html>

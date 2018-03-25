@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en-us" class="wf-firasans-n4-active wf-active">
+	<head>
+    <link href="http://gmpg.org/xfn/11" rel="profile">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Enable responsiveness on mobile devices --> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    
+    	
+    <meta name="generator" content="Hugo 0.37.1" />
+    
+    <title>Searching for SSL Certificates based on SAN entries &middot; The Fuzzy Spork</title>
+    <meta content="Searching for SSL Certificates based on SAN entries - The Fuzzy Spork" property="og:title">
+    <meta content=" - " property="og:description">    
+    <!-- CSS --> 
+    <link rel="stylesheet" href="css/print.css" media="print">
+    <link rel="stylesheet" href="css/poole.css">
+    <link rel="stylesheet" href="css/hyde.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira+Sans:300,300i,400,400i,500">
+    
+    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+    
+    <!-- Customised CSS -->
+    <link rel="stylesheet" href="css/custom.css">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- Icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+    <link rel="shortcut icon" href="/favicon.png">
+    
+
+	</head>
+    <body>
+        <div class="sidebar">
+	<div class="container text-center sidebar-sticky">
+		<div class="sidebar-about text-center">
+			<a href=""><h1 class="brand">The Fuzzy Spork</h1></a>
+			
+			<p class="lead">
+				 Strange but entertaining food for thought 
+			</p>
+		</div>
+		
+<div>
+	<ul class="sidebar-nav">
+		
+		
+				<li>
+					<a href="/tags/"> <span>Tags</span></a>
+				</li>
+				<li>
+					<a href="/posts/"> <span>Archive</span></a>
+				</li>
+		</li>
+	</ul>
+</div>
+
+        <p>
+		<section class="row text-center">
+	
+	<a href="https://twitter.com/kingofzeal"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	&nbsp;<a href="https://github.com/kingofzeal"><i class="fab fa-github fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	
+	
+	&nbsp;<a href="https://stackoverflow.com/users/1088711"><i class="fab fa-stack-overflow fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	
+</section>
+
+        </p>
+		<p class="copyright">&copy; 2018 James McCollum.
+        </p>
+	</div>
+	<div>
+	</div>
+</div>
+
+        <div class="content container">
+            <div class="post">
+  <h1>Searching for SSL Certificates based on SAN entries</h1>
+  
+  <div class="col-sm-12 col-md-12">
+    <span class="text-left post-date meta">
+            
+       <i class="fa fa-calendar" aria-hidden="true"></i> Saturday, December 23, 2017 
+      
+      
+      
+      
+        
+        
+            <br/>
+             <i class="fa fa-tags" aria-hidden="true"></i>
+            
+            <a class="meta" href="/tags/devops">devops</a> 
+        
+            <a class="meta" href="/tags/letsencrypt">letsencrypt</a> 
+        
+            <a class="meta" href="/tags/octopus-deploy">octopus deploy</a> 
+        
+            <a class="meta" href="/tags/ssl-certificates">ssl certificates</a>
+        
+      
+      
+      </span>  
+  </div>    
+  
+  <p>Lately, I&rsquo;ve been playing with <a href="https://letsencrypt.org/">Lets Encrypt</a> as a means to encrypt public(ish) web-based services I run on my local server. It&rsquo;s actually remarkable what this non-profit group has accomplished when it comes to SSL - they offer free, automated SSL certificates to anybody who wants them. They even support SAN certificates (those that cover multiple, explicitly-named DNS entries), and starting in January they will offer wildcard certificates. I will tell anybody who is willing to listen, and who is looking to avoid paying paying $50+ for an SSL certificate, about them and encourage everyone to look into their service. <!-- more --></p>
+
+<p>The only real downside (which some argue isn&rsquo;t really a downside) is that these certificates generally have a pretty short lifetime - they last 90 days, with no options for longer lengths (unlike other CAs). There are reasons for this, but they make up for this by being completely automated - it literally takes seconds to get a new certificate. If you are on a Windows machine, you can snag a tool from Github which not only handles the request for the certificate, but also installs it, updates your IIS bindings, and creates a scheduled task that will look at the state of your certificates and, if needed (generally after about 60 days - 30 days before they expire), automatically renew them. It is as close to a set it and forget it system, and you don&rsquo;t have to run the risk of letting your certificates expire while you wait for a new one.</p>
+
+<p>However, having constantly (and automatically) changing SSL certificates can preset an interesting challenge if you use Octopus Deploy to deploy your websites. If you are only deploying a single website, then the answer is trivial - there is a <a href="http://library.octopusdeploy.com/step-templates/bc81b8a6-dc56-4769-87b5-650af7a38162/actiontemplate-lets-encrypt-create-ssl-certificate">community step template</a> that takes care of most of the hard work for you.</p>
+
+<p>But this only renews the certificate when you do to deploy a project - if you could potentially go more than 90 days between deployments, you run the risk of the certificate expiring. There are features that help mitigate this, such as setting up Octopus notifications when a certificate is about to expire, but ultimately you still need to perform a deployment to get the new certificate.
+Additionally, this really only works if you have a single website. If you are deploying multiple websites to the same IIS service, and you want to bind all of them to port 443 (the default SSL port), you need a SAN certificate, which the current template doesn&rsquo;t really addresses.</p>
+
+<p>There is a currently outstanding <a href="https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/15045072-support-letsncrypt-for-octopus-certificates">UserVoice suggestion</a> to address this by adding Lets Encrypt a first-class citizen, but it looks like that&rsquo;s part of <a href="https://github.com/OctopusDeploy/Issues/issues/2701">&lsquo;Phase 3&rsquo;</a> of managing certificates. In the meantime, there is a post on the UserVoice suggestion that offers a workaround: run a script that finds a given certificate by Subject name (often the primary DNS Name the certificate was issued for), and update the thumbprint in the deployment process with whatever certificate is currently there.</p>
+
+<p>For now, this seems like a better option. It doesn&rsquo;t require any unnecessary deployments - the Lets Encrypt certificate is presumably scheduled to be updated on the server periodically, and the current thumbprint is simply obtained and used at deployment time. This allows for greater flexibility in how certificates are managed, by being able to use SAN or (eventually) wildcard certificates. While they aren&rsquo;t being managed by Octopus, which can be argued is the best place to have them, at the very least having a new certificate for the site won&rsquo;t interfere with the deployment process.</p>
+
+<p>However, there is one last hurdle - the certificate is identified by Subject, which may not necessarily represent the DNS entry for the website we&rsquo;re deploying to. In the case of a SAN certificate, if it covers 4 websites, you will need to provide this detail (and hope it doesn&rsquo;t change) for 3 out of the 4 websites. This is less than ideal, as a change in one project may mean a change in others.</p>
+
+<p>After much trial and error, I found that altering the script a little bit allows us to search for a certificate that covers the website we&rsquo;re deploying. I&rsquo;ve turned this into a Step Template so we can re-use the logic in multiple projects, but this is the core of the script:</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">Write-Host <span style="color:#e6db74">&#34;Search Enabled: $SearchDynamicCertificate&#34;</span>
+Write-Host <span style="color:#e6db74">&#34;Default Thumbprint: $DefaultThumbprint&#34;</span>
+Write-Host <span style="color:#e6db74">&#34;DNS Subject: $DnsSubject&#34;</span>
+
+$disoveredThumbprint = $DefaultThumbprint
+
+<span style="color:#66d9ef">if</span> ($SearchDynamicCertificate){
+	$thumbprint = Get-ChildItem Cert<span style="color:#960050;background-color:#1e0010">:</span>\LocalMachine\My -Recurse | Where-Object {
+		$_.NotAfter <span style="color:#f92672">-gt</span> (get-date) <span style="color:#f92672">-and</span> $_.NotBefore <span style="color:#f92672">-le</span> (get-date)
+	} | Select-Object -Property Thumbprint,@{
+		Name=<span style="color:#e6db74">&#34;San&#34;</span>;
+		Expression={$_.Extensions | Where-Object {$_.Oid.FriendlyName <span style="color:#f92672">-eq</span> <span style="color:#e6db74">&#34;subject alternative name&#34;</span>}}
+	} | Where-Object {
+		$_.San.Count <span style="color:#f92672">-gt</span> 0 <span style="color:#f92672">-and</span> 
+		$_.San.Format(1).Contains(<span style="color:#e6db74">&#34;DNS Name=$DnsSubject&#34;</span>)
+	} | Select-Object -ExpandProperty Thumbprint
+
+	<span style="color:#66d9ef">if</span> (<span style="color:#f92672">-not</span> <span style="color:#66d9ef">[string]</span>::IsNullOrWhiteSpace($thumbprint)){
+		Write-Host <span style="color:#e6db74">&#34;Found certificate $thumbprint that covers $DnsSubject&#34;</span>
+		$disoveredThumbprint = $thumbprint
+	}
+}
+
+Write-Host <span style="color:#e6db74">&#34;Using $disoveredThumbprint for DiscoveredThumbprint&#34;</span>
+Set-OctopusVariable -name <span style="color:#e6db74">&#34;DiscoveredThumbprint&#34;</span> -value <span style="color:#e6db74">&#34;$disoveredThumbprint&#34;</span></code></pre></div>
+
+<p><code>DefaultThumbprint</code>, <code>SearchDynamicCertificate</code> and <code>DnsSubject</code> are all parameters of the template, and in our case they map directly to the original <code>thumbprint</code> project variable, a new checkbox project variable, and the binding DNS project variable, respectively.</p>
+
+<p>In a nutshell, it goes through all certificates in the certificate store, filters out any that are expired or predated, extracts the SAN entries, and returns the thumbprint of any certificates that have a SAN entry for the given address, which is then set as an output variable (<code>DiscoveredThumbprint</code>). This <em>could</em> return multiple certificates, if they cover the same DNS entries, but generally speaking you shouldn&rsquo;t see that very much, if at all.</p>
+
+<p>If no certificate is found, or if <code>SearchDynamicCertificate</code> is false, then it just uses the default thumbprint provided. This process does assume that IIS is setup correctly (only one certificate per port, regardless of how many websites bind to that port), and does not do any validation that the certificate found is the correct one to be used. There are probably additional checks that could be performed around that area, but for now this works for &ldquo;happy-path&rdquo; deployments.</p>
+
+</div>
+            <div class="footer">
+                
+
+
+
+            </div>
+        </div>
+        
+                
+    </body>
+</html>
