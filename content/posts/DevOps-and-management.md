@@ -4,18 +4,25 @@ date: 2018-03-25T12:29:54-05:00
 draft: true
 ---
 
-I recently gave a talk at [NEW CodeCamp](http://newcodecamp.com) on a topic that over the last several months has become something I enjoy talking about and working with - Octopus Deploy. After the session, I was talking with someone who attended about their own deployment process. After thinking about his situation, I've decided to write my thoughts on the situation.
+I recently gave a talk at [NEW CodeCamp](http://newcodecamp.com) on a topic that over the last several months has become something I enjoy talking about and working with - Octopus Deploy. After the session, I was talking with someone who attended about their own deployment process. I've thought about our conversation, and I've decided to write my thoughts on the situation.
 
-The situation he described is not likely all that unusual. He basically told me that their deployment of updates mainly consisted of dropping only the modified assemblies or files into their production environment. In the case of websites, it would be HTML or ASPX files, and in the case of a windows application it would be the supporting binary DLLs (the primary executable would rarely change, understandably).
+Unfortunatly, his story is likely not all that unusual. In short, their update process consists mostly of dropping only the assemblies or files that were modified into their production environment, rather than the full software package. In the case of websites, it would be HTML or ASPX files, and in the case of a windows application it would be the supporting binary DLLs (the primary executable would rarely change, understandably).
 
-From the perspective of the company management, this is a very attractive method of doing things: if you have multiple bug fixes in the works, it's easy to deploy the fix in any order once it has been tested (assuming they change different files), and the process appears to be relatively low-risk. It also allows their testing pipeline to be filled relatively efficiently while giving the impression of a real CI/CD pipeline to production.
+From the perspective of the company management, this can be a very attractive method of doing things: if you have multiple bug fixes in the works, it's easy to deploy the fix in any order once it has been tested (assuming they change different files), and the process appears to be relatively low-risk. It also allows their testing pipeline to be filled relatively efficiently while giving the impression of a real CI/CD pipeline to production.
 
 With that all set up, let's go over what some potential solutions _could_ be, and how they work out from a CI/CD best practice perspective.
 
 ## Deploy each file as its own package
+One idea that we came up with was to package each individual file as its own package, and then deploy only those files that change. On the surface, this seems like a reasonable solution - in fact, in many ways as developers we do this as part of normal development. Think of what is actually happening when you update NuGet/npm packages, Ruby Gems, etc. The difference is that these dependencies are wrapped into and bundled with your application and deployed at the same time as you generally deploy a new version of your application, not independantly upgraded. And there tends to be a very good reason for that.
+
+The biggest risk is compatability. While testing the application itself would generally uncover changes that would result in compile-time errors (for example, making a breaking change to a method signature), it may not uncover more subtle issues. 
+
+I always seem to come back to the concept of emergent bugs - bugs that occur because of two independant changes that, on their own, operate correctly but when combined produce unexpected results. These changes can sometimes be found through various automated testing techniques, but other times it takes end-to-end testing. If you treat each change only in isolation, there is no way of identifying these kinds of interactions until it goes to production. And once there, it can be more difficult to track down the issue, since you need to determine the state of each individual component to determine when the bug arises.
+
+Finally, there's also the practicality of maintaining such a system. Within the context of Octopus (and other systems that operate similarly), you would have to specifically require each package that would need to be deployed; the process to deploy your product would be a massive number of steps (at least one for each file), and every package would have their own distinct version number, causing a headache trying to figure out just what version of which file should go at any given time. 
 
 ## Conclusion
-If there's one thing I've learned while thinking about this situation and the possible solutions, it's that CI/CD best practices are best practices for reason.
+If there's one thing I've learned while thinking about this situation and the possible solutions, it's that CI/CD best practices are best practices for reason. When management doesn't fully understand the _why_ of a process, it can be difficult to move to a better place. But the nice thing about the current state of technology is that doing a proper deployment pipeline doesn't mean you have to sacrifice your agility of getting features and bugfixes out the door; in fact, in many ways it helps to be more agile.
 
 One thing I keep coming back to is something I learned early in my career. We would have auditors come in on a yearly basis and examine the IT department, software engineering included, to help identify potential risks and concerns. During this audit, they would look at things like who had access to mission-critical servers, examine how access to those servers was regulated, and even checked that the various procedures were being followed. 
 
