@@ -5,6 +5,7 @@ theme: "hyde-hyde"
 defaultContentLanguage: "en-us"
 description: "something"
 pygmentsCodeFences: true
+googleAnalytics: "UA-85482724-1"
 
 params:
     description: "Strange but entertaining food for thought"
