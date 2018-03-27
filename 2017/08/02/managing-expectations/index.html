@@ -102,9 +102,7 @@
       </span>  
   </div>    
   
-  
-
-<p>This morning I realized that, as programmers, we frequently make assumptions about the software we write which seem to be reasonable, but aren&rsquo;t completely thought out.<!-- more --></p>
+  <p>This morning I realized that, as programmers, we frequently make assumptions about the software we write which seem to be reasonable, but aren&rsquo;t completely thought out.</p>
 
 <p>I have an older (second generation) iPad that I mostly use for playing games and managing a media server I have set up in my house. Occasionally I will use it as a note-taking device, but honestly it can&rsquo;t do much more, and I don&rsquo;t need it to. Since it&rsquo;s an older device, it&rsquo;s no longer receiving the latest-and-greatest iOS, and seems to be going through a kind of planned obsolescence that many other people have also noticed in aging iOS devices.</p>
 
@@ -118,7 +116,7 @@
 
 <p>First, I want to point out that I&rsquo;m not an iOS developer, and have never touched iOS languages, so I may not be using the correct terminology. From what I can tell, the app is wired into an event that is fired whenever the app goes into standby. This event is raised if you go to the app switcher, when a notification box is displayed, etc - basically any time the app loses focus for any reason. When the event is raised, a local DateTime setting is set with the current clock value. Then, when the app is restored from the standby state, it takes <code>(DateTime.Now - [Saved DateTime]) * [current offline rate]</code> and gives you that amount of currency.</p>
 
-<p>At the face of it, this seems a perfectly reasonable calculation. Since the DateTime is saved whenever the app goes into <em>any</em> standby state, including if you open the app switcher to manually kill the app, and the offline rate doesn&rsquo;t change while you aren&rsquo;t in the app, and it makes it difficult to &ldquo;game&rdquo; the system. This is still prone to adjustments of the system clock (ie, manually adjusting the clock forwards or backwards to make it seem as if more time has passed than it actually has), but those can be countered by other means and I didn&rsquo;t check to see if they were handled or not.</p>
+<p>At the face of it, this seems a perfectly reasonable calculation. Since the DateTime is saved whenever the app goes into <em>any</em> standby state, including if you open the app switcher to manually kill the app, and the offline rate doesn&rsquo;t change while you aren&rsquo;t in the app, and it makes it difficult to &ldquo;game&rdquo; the system. This is still prone to adjustments of the system clock (i.e., manually adjusting the clock forwards or backwards to make it seem as if more time has passed than it actually has), but those can be countered by other means and I didn&rsquo;t check to see if they were handled or not.</p>
 
 <p>However, it seems the saved DateTime value is <em>not</em> updated on a crash, or any other kind of event for that matter (like buying something, or literally any user interaction) - only when the app goes to standby. As a result, I&rsquo;m able to exploit the instability of the app running on my device to force a crash, and then reload it, and take advantage of the fact that the app doesn&rsquo;t know that it&rsquo;s been opened before. Additionally, since all the other saved values of the game (like the offline earning rate) are saved as soon as possible, when the calculation is performed at start up, you not only get credit for the time but at the higher rate.</p>
 
@@ -136,7 +134,6 @@
 </ul>
 
 <p>Some assumptions might be valid, and in some cases the cost to remedy a faulty assumption might be deemed too high for the risk it exposes. The goal is not to make sure everything is perfect, but to examine the often unspoken reasons for doing things a particular way, make sure it&rsquo;s clear <em>why</em> it was done, and think of uncommon events that could lead to unexpected behavior.</p>
-
 </div>
             <div class="footer">
                 

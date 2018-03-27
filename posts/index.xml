@@ -17,7 +17,7 @@
       <pubDate>Sat, 23 Dec 2017 08:00:00 -0600</pubDate>
       
       <guid>https://kingofzeal.github.io/fuzzy-spork/2017/12/23/searching-for-ssl-certificates-based-on-san-entries/</guid>
-      <description>Lately, I&amp;rsquo;ve been playing with Lets Encrypt as a means to encrypt public(ish) web-based services I run on my local server. It&amp;rsquo;s actually remarkable what this non-profit group has accomplished when it comes to SSL - they offer free, automated SSL certificates to anybody who wants them. They even support SAN certificates (those that cover multiple, explicitly-named DNS entries), and starting in January they will offer wildcard certificates. I will tell anybody who is willing to listen, and who is looking to avoid paying paying $50+ for an SSL certificate, about them and encourage everyone to look into their service.</description>
+      <description>&lt;p&gt;Lately, I&amp;rsquo;ve been playing with &lt;a href=&#34;https://letsencrypt.org/&#34;&gt;Lets Encrypt&lt;/a&gt; as a means to encrypt public(ish) web-based services I run on my local server. It&amp;rsquo;s actually remarkable what this non-profit group has accomplished when it comes to SSL - they offer free, automated SSL certificates to anybody who wants them. They even support SAN certificates (those that cover multiple, explicitly-named DNS entries), and starting in January they will offer wildcard certificates. I will tell anybody who is willing to listen, and who is looking to avoid paying paying $50+ for an SSL certificate, about them and encourage everyone to look into their service. &lt;/p&gt;</description>
     </item>
     
     <item>
@@ -26,8 +26,9 @@
       <pubDate>Thu, 14 Dec 2017 08:00:00 +0000</pubDate>
       
       <guid>https://kingofzeal.github.io/fuzzy-spork/2017/12/14/using-octopus-deploy-to-deploy-multiple-projects-at-once/</guid>
-      <description>We use Octopus Deploy at my workplace to handle all of our releases. The tool is one of the best I&amp;rsquo;ve had the pleasure of dealing with, and the more I interact with it, the more I realize just how powerful, yet flexible, it is. I will gladly recommend it to anyone who is looking for a way of releasing any kind of software.
-However, there is always room for improvement.</description>
+      <description>&lt;p&gt;We use Octopus Deploy at my workplace to handle all of our releases. The tool is one of the best I&amp;rsquo;ve had the pleasure of dealing with, and the more I interact with it, the more I realize just how powerful, yet flexible, it is. I will gladly recommend it to anyone who is looking for a way of releasing any kind of software.&lt;/p&gt;
+
+&lt;p&gt;However, there is always room for improvement. In this case, not necessarily improvement with the software package, but how we use it. &lt;/p&gt;</description>
     </item>
     
     <item>
@@ -36,7 +37,7 @@ However, there is always room for improvement.</description>
       <pubDate>Wed, 02 Aug 2017 13:33:27 +0000</pubDate>
       
       <guid>https://kingofzeal.github.io/fuzzy-spork/2017/08/02/managing-expectations/</guid>
-      <description>This morning I realized that, as programmers, we frequently make assumptions about the software we write which seem to be reasonable, but aren&amp;rsquo;t completely thought out.I have an older (second generation) iPad that I mostly use for playing games and managing a media server I have set up in my house. Occasionally I will use it as a note-taking device, but honestly it can&amp;rsquo;t do much more, and I don&amp;rsquo;t need it to.</description>
+      <description>&lt;p&gt;This morning I realized that, as programmers, we frequently make assumptions about the software we write which seem to be reasonable, but aren&amp;rsquo;t completely thought out.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -45,7 +46,7 @@ However, there is always room for improvement.</description>
       <pubDate>Wed, 05 Apr 2017 11:00:00 +0000</pubDate>
       
       <guid>https://kingofzeal.github.io/fuzzy-spork/2017/04/05/the-non-standard-developer/</guid>
-      <description>I recently read this really awesome article written by a developer who had no formal education or background and his journey to becoming a front-end developer. Having gone through a somewhat similar transformation, I was inspired to also write about my own transition into programming without a traditional programming background. Who are you anyway? A fair question, and one I&amp;rsquo;m going to avoid almost entirely. Instead, I&amp;rsquo;m going to say that my formal education is in business, specifically accounting, and that my transition into pure development wasn&amp;rsquo;t radical, but a career evolution.</description>
+      <description>&lt;p&gt;I recently read &lt;a href=&#34;https://medium.freecodecamp.com/my-journey-to-becoming-a-web-developer-from-scratch-without-a-cs-degree-2-years-later-and-what-i-4a7fd2ff5503#.57ujsobff&#34;&gt;this really awesome article&lt;/a&gt; written by a developer who had no formal education or background and his journey to becoming a front-end developer. Having gone through a somewhat similar transformation, I was inspired to also write about my own transition into programming without a traditional programming background. &lt;/p&gt;</description>
     </item>
     
     <item>
@@ -54,7 +55,7 @@ However, there is always room for improvement.</description>
       <pubDate>Tue, 11 Oct 2016 07:00:00 +0000</pubDate>
       
       <guid>https://kingofzeal.github.io/fuzzy-spork/2016/10/11/on-deployments-and-distribution/</guid>
-      <description>Ever since I started programming, I&amp;rsquo;ve been fascinated with what you can do with a codebase - not just the act of programming, but building and deploying it as well. For a programming company, the less time programmers have to work on building or deploying their code, the more productive they can be. The automation of these things can have a huge benefit.I&amp;rsquo;m sure many who may be reading this already have something in place to automatically build code, either on check-in, at a specific time, or both.</description>
+      <description>&lt;p&gt;Ever since I started programming, I&amp;rsquo;ve been fascinated with what you can do with a codebase - not just the act of programming, but building and deploying it as well. For a programming company, the less time programmers have to work on building or deploying their code, the more productive they can be. The automation of these things can have a huge benefit.&lt;/p&gt;</description>
     </item>
     
     <item>

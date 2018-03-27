@@ -17,7 +17,7 @@
       <pubDate>Sat, 23 Dec 2017 08:00:00 -0600</pubDate>
       
       <guid>https://kingofzeal.github.io/fuzzy-spork/2017/12/23/searching-for-ssl-certificates-based-on-san-entries/</guid>
-      <description>Lately, I&amp;rsquo;ve been playing with Lets Encrypt as a means to encrypt public(ish) web-based services I run on my local server. It&amp;rsquo;s actually remarkable what this non-profit group has accomplished when it comes to SSL - they offer free, automated SSL certificates to anybody who wants them. They even support SAN certificates (those that cover multiple, explicitly-named DNS entries), and starting in January they will offer wildcard certificates. I will tell anybody who is willing to listen, and who is looking to avoid paying paying $50+ for an SSL certificate, about them and encourage everyone to look into their service.</description>
+      <description>&lt;p&gt;Lately, I&amp;rsquo;ve been playing with &lt;a href=&#34;https://letsencrypt.org/&#34;&gt;Lets Encrypt&lt;/a&gt; as a means to encrypt public(ish) web-based services I run on my local server. It&amp;rsquo;s actually remarkable what this non-profit group has accomplished when it comes to SSL - they offer free, automated SSL certificates to anybody who wants them. They even support SAN certificates (those that cover multiple, explicitly-named DNS entries), and starting in January they will offer wildcard certificates. I will tell anybody who is willing to listen, and who is looking to avoid paying paying $50+ for an SSL certificate, about them and encourage everyone to look into their service. &lt;/p&gt;</description>
     </item>
     
   </channel>
