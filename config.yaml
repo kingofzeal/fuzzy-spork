@@ -6,6 +6,7 @@ defaultContentLanguage: "en-us"
 description: "something"
 pygmentsCodeFences: true
 googleAnalytics: "UA-85482724-1"
+DisqusShortname: "fuzzy-spork"
 
 params:
     description: "Strange but entertaining food for thought"
