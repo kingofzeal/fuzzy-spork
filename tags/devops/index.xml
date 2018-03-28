@@ -6,10 +6,19 @@
     <description>Recent content in Devops on The Fuzzy Spork</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 23 Dec 2017 08:00:00 -0600</lastBuildDate>
+    <lastBuildDate>Sun, 25 Mar 2018 12:29:54 -0500</lastBuildDate>
     
 	<atom:link href="https://kingofzeal.github.io/fuzzy-spork/tags/devops/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>DevOps and Management</title>
+      <link>https://kingofzeal.github.io/fuzzy-spork/2018/03/25/devops-and-management/</link>
+      <pubDate>Sun, 25 Mar 2018 12:29:54 -0500</pubDate>
+      
+      <guid>https://kingofzeal.github.io/fuzzy-spork/2018/03/25/devops-and-management/</guid>
+      <description>&lt;p&gt;TL;DR: What do you do if your management doesn&amp;rsquo;t &amp;ldquo;get&amp;rdquo; DevOps and Continuous Integration/Continuous Deployment?&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Searching for SSL Certificates based on SAN entries</title>

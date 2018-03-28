@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en-us" class="wf-firasans-n4-active wf-active">
+	<head>
+    <link href="http://gmpg.org/xfn/11" rel="profile">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Enable responsiveness on mobile devices --> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    
+    	
+    <meta name="generator" content="Hugo 0.37.1" />
+    
+    <title>DevOps and Management &middot; The Fuzzy Spork</title>
+    <meta content="DevOps and Management - The Fuzzy Spork" property="og:title">
+    <meta content=" - " property="og:description">    
+    <!-- CSS --> 
+    <link rel="stylesheet" href="https://kingofzeal.github.io/fuzzy-spork/css/print.css" media="print">
+    <link rel="stylesheet" href="https://kingofzeal.github.io/fuzzy-spork/css/poole.css">
+    <link rel="stylesheet" href="https://kingofzeal.github.io/fuzzy-spork/css/hyde.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira+Sans:300,300i,400,400i,500">
+    
+    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+    
+    <!-- Customised CSS -->
+    <link rel="stylesheet" href="https://kingofzeal.github.io/fuzzy-spork/css/custom.css">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- Icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+    <link rel="shortcut icon" href="/favicon.png">
+    
+
+	</head>
+    <body>
+        <div class="sidebar">
+	<div class="container text-center sidebar-sticky">
+		<div class="sidebar-about text-center">
+			<a href="https://kingofzeal.github.io/fuzzy-spork/"><h1 class="brand">The Fuzzy Spork</h1></a>
+			
+			<p class="lead">
+				 Strange but entertaining food for thought 
+			</p>
+		</div>
+		
+<div>
+	<ul class="sidebar-nav">
+		
+		
+				<li>
+					<a href="/fuzzy-spork/tags/"> <span>Tags</span></a>
+				</li>
+				<li>
+					<a href="/fuzzy-spork/posts/"> <span>Archive</span></a>
+				</li>
+		</li>
+	</ul>
+</div>
+
+        <p>
+		<section class="row text-center">
+	
+	<a href="https://twitter.com/kingofzeal"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	&nbsp;<a href="https://github.com/kingofzeal"><i class="fab fa-github fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	
+	
+	&nbsp;<a href="https://stackoverflow.com/users/1088711"><i class="fab fa-stack-overflow fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	
+</section>
+
+        </p>
+		<p class="copyright">&copy; 2018 James McCollum.
+        </p>
+	</div>
+	<div>
+	</div>
+</div>
+
+        <div class="content container">
+            <div class="post">
+  <h1>DevOps and Management</h1>
+  
+  <div class="col-sm-12 col-md-12">
+    <span class="text-left post-date meta">
+            
+       <i class="fa fa-calendar" aria-hidden="true"></i> Sunday, March 25, 2018 
+      
+      
+      
+      
+        
+        
+            <br/>
+             <i class="fa fa-tags" aria-hidden="true"></i>
+            
+            <a class="meta" href="/fuzzy-spork/tags/deployment">deployment</a> 
+        
+            <a class="meta" href="/fuzzy-spork/tags/devops">devops</a>
+        
+      
+      
+      </span>  
+  </div>    
+  
+  <p>TL;DR: What do you do if your management doesn&rsquo;t &ldquo;get&rdquo; DevOps and Continuous Integration/Continuous Deployment?</p>
+
+<h2 id="the-longer-version">The Longer Version</h2>
+
+<p>I recently gave a talk at <a href="http://newcodecamp.com">NEW CodeCamp</a> on a topic that over the last several months has become something I enjoy talking about and working with - Octopus Deploy. After the session, I was talking with someone who attended about their own deployment process. I&rsquo;ve thought about our conversation, and I&rsquo;ve decided to write my thoughts on the situation.</p>
+
+<p>Unfortunately, his story is likely not all that unusual. In short, their update process consists mostly of dropping only the assemblies or files that were modified into their production environment, rather than the full software package. In the case of websites, it would be HTML or ASPX files, and in the case of a windows application it would be the supporting binary DLLs (the primary executable would rarely change, understandably).</p>
+
+<p>From the perspective of the company management, this can be a very attractive method of doing things: if you have multiple bug fixes in the works, it&rsquo;s easy to deploy the fix in any order once it has been tested (assuming they change different files), and the process appears to be relatively low-risk. It also allows their testing pipeline to be filled relatively efficiently while giving the impression of a real CI/CD pipeline to production.</p>
+
+<h2 id="what-if-we">What if we&hellip;</h2>
+
+<p>One idea that we came up with to address this situation was to package each individual file as its own package, and then deploy only those files that change. On the surface, this seems like a reasonable solution - in fact, in many ways as developers we do this as part of normal development. Think of what is actually happening when you update NuGet/NPM packages, Ruby Gems, etc. The difference is that these dependencies are wrapped into and bundled with your application and deployed at the same time as you generally deploy a new version of your application, not independently upgraded. And there tends to be a very good reason for that.</p>
+
+<p>I always seem to come back to the concept of emergent bugs - bugs that occur because of two independent changes that, on their own, operate correctly but when combined produce unexpected results. These changes can sometimes be found through various automated testing techniques, but other times it takes end-to-end testing. If you treat each change only in isolation, there is no way of identifying these kinds of interactions until it goes to production. And once there, it can be more difficult to track down the issue, since you need to determine the state of each individual component to determine when the bug arises.</p>
+
+<p>Then there&rsquo;s also the practicality of maintaining such a system. Within the context of Octopus (and other systems that operate similarly), you would have to specifically require each package that would need to be deployed; the process to deploy your product would be a massive number of steps (at least one for each file), and every package would have their own distinct version number, causing a headache trying to figure out just what version of which file should go at any given time. This isn&rsquo;t even touching on the maintenance when new files inevitably need to be added to the application.</p>
+
+<h2 id="but-why">But why?</h2>
+
+<p>Finally, I have to take a step back and really ask about the elephant in the room: Why? Really, doing this type of system doesn&rsquo;t actually give any additional flexibility or benefit over traditional Continuous Deployment systems. In fact, in some circumstances it actually gives you <em>less</em> flexibility.</p>
+
+<p>One perspective I always tend to have when it comes to deploying software is on the ability to scale out. In this type of scenario, if you wanted to deploy your software to a new location, you have to do more work proportional to the number of locations to deploy to. You now have to remember to update these files in multiple locations; in the case of a new deployment you have to deploy your &ldquo;base&rdquo; image (which could possibly, and I expect likely, be a few months old), then figure out which files need to be changed from there. In either case, you now have a considerable potential for having mismatched versions in your own production environment, which can make debugging new issues even more difficult.</p>
+
+<p>Compare that to how modern CD systems work: everything goes, every time. A new location to deploy to is effectively no different than updating an existing one, assuming the environments are the same. If the concern is really being able to have multiple development (and testing) efforts going at the same time, it can accomplished very easily by using a modern version control system like Git. You can even use an established process like GitFlow or GitHubFlow, but isn&rsquo;t really necessary if you don&rsquo;t want to. In either case, each effort can be done in a different branch and when it&rsquo;s tested/ready to go/whatever, it gets merged into the primary branch, built, and deployed. You don&rsquo;t even need to be on a regular release cadence (like once a month, every week, etc), unless you want to be.</p>
+
+<h2 id="personal-lessons">Personal Lessons</h2>
+
+<p>If there&rsquo;s one thing I&rsquo;ve learned while thinking about this situation and the possible solutions, it&rsquo;s that CI/CD best practices are best practices for reason. When management doesn&rsquo;t fully understand the <em>why</em> of a process, it can be difficult to move to a better place. But the nice thing about the current state of technology is that doing a proper deployment pipeline doesn&rsquo;t mean you have to sacrifice your agility of getting features and bug fixes out the door.</p>
+
+<p>When I think about these best practices, I always come back to is something I learned early in my career. At my employer, we would have auditors come in on a yearly basis and examine the IT department (software engineering included) to help identify potential risks and concerns. During this audit, they would look at things like who had access to mission-critical servers, examine how access to those servers was regulated, and even checked that the various procedures were being followed.</p>
+
+<p>When it came to software development, they pulled a random sample of code changes (normally driven by commit messages in source control), and looked at a couple things around each one - namely, why the change was made (who requested it, why was it needed, etc), documentation around testing and/or sign off of the change and <em>proof that the code that was tested and approved was the same code that ended up in the production environment</em>.</p>
+
+<p>That last point has always stuck with me, and I think that when it comes to things like CI/CD, it&rsquo;s something that should always be baked into the system - even if you aren&rsquo;t being audited on a regular basis. As software becomes more pronounced to our every day lives, being able to tie a specific change to a given version (and vice versa) becomes important as well, whether you&rsquo;re writing the next generation of AI software for self-driving cars or a game for people to enjoy on the bus on their way to work.</p>
+
+<p>Unfortunately, in the scenario above, it is far from the case. Sure, you can compare the version (assuming it changed) or a hash of each DLL, and hopefully tie that back to a build system and ensure they match. But if you have any kind of complexity in your project, that would be a long and tedious task. It would be much easier to say, across the board, &ldquo;This change was incorporated into this package version, and this package version was put at production at this time&rdquo;, which should be easier to verify. Future packages can be proven to have been built on top of that version, so you can still be confident those changes are in some way still there.</p>
+
+<h2 id="fine-now-what">Fine. Now what?</h2>
+
+<p>Unfortunately, I don&rsquo;t think there is a technical solution to this problem. Nothing we can do will suddenly make things more correct, or necessarily even easier, at least not for the long term. The best option is probably to sit down with management, and have a conversation around what they see as the benefits to this process, and try to correct their misconceptions. Once you have them on the same page regarding the current state of their deployment process, then you can begin to make changes - such as a new branching model that accommodates their desire to have multiple development and testing efforts simultaneously. From there you can begin to automate your processes and not only take advantage of the scalability that provides, but also have more faith in your processes and know that things will be done reliably and consistently.</p>
+</div>
+            <div class="footer">
+                
+
+
+        <h2>Comments</h2>
+        <div id="disqus_thread"></div>
+<script type="text/javascript">
+      (function () {
+            
+            
+            
+            if (location.hostname === "localhost" || 
+            	location.hostname === "127.0.0.1" || 
+            	location.hostname === "") {
+                return;
+			}
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            var disqus_shortname = 'fuzzy-spork';
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(
+                  dsq);
+      })();
+</script>
+
+<noscript>
+	Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+    
+
+            </div>
+        </div>
+        
+        
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-85482724-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='//www.google-analytics.com/analytics.js'></script>
+        
+    </body>
+</html>

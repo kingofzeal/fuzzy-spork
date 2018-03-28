@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://kingofzeal.github.io/fuzzy-spork/2018/03/25/devops-and-management/</loc>
+    <lastmod>2018-03-25T12:29:54-05:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://kingofzeal.github.io/fuzzy-spork/2017/12/23/searching-for-ssl-certificates-based-on-san-entries/</loc>
     <lastmod>2017-12-23T08:00:00-06:00</lastmod>
   </url>
@@ -45,13 +50,13 @@
   
   <url>
     <loc>https://kingofzeal.github.io/fuzzy-spork/tags/deployment/</loc>
-    <lastmod>2017-12-14T08:00:00+00:00</lastmod>
+    <lastmod>2018-03-25T12:29:54-05:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://kingofzeal.github.io/fuzzy-spork/tags/devops/</loc>
-    <lastmod>2017-12-23T08:00:00-06:00</lastmod>
+    <lastmod>2018-03-25T12:29:54-05:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -69,7 +74,7 @@
   
   <url>
     <loc>https://kingofzeal.github.io/fuzzy-spork/posts/</loc>
-    <lastmod>2017-12-23T08:00:00-06:00</lastmod>
+    <lastmod>2018-03-25T12:29:54-05:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -87,7 +92,7 @@
   
   <url>
     <loc>https://kingofzeal.github.io/fuzzy-spork/</loc>
-    <lastmod>2017-12-23T08:00:00-06:00</lastmod>
+    <lastmod>2018-03-25T12:29:54-05:00</lastmod>
     <priority>0</priority>
   </url>
   
